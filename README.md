@@ -1,8 +1,8 @@
 # endv
-# 开源通信(C#)Endv.cn
-# 与广大爱好者共同研究、共同讨论。
-# QQ global 194204929 
-# Auto detect text files and perform LF normalization
+__粗体2__ 开源通信(C#)Endv.cn
+       与广大爱好者共同研究、共同讨论。
+       QQ global 194204929 
+      # Auto detect text files and perform LF normalization
 * text=auto
 
 # Custom for Visual Studio
