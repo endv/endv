@@ -6,9 +6,9 @@
 
 #贡献者
 ==============
-|序|  目 录  |    作用    | 生成文件名称|备注|贡献者|加入时间|
-|---|--------|------------|----|------|------|-----|
-|1|cn|界面层|endv.exe|程序主目录，界面层|[endv](http://www.cnblogs.com/endv/ "endv") | 2016-12-14
+|序No|  目录 Directory | 作用 Effect| 文件名称 Generate file name |备注 Remarks| 贡献者 Contributor|Join Time 加入时间|Country 国家|
+|---|--------|------------|----|------|------|-----|----|----|
+|1|cn|界面层|endv.exe|程序主目录，界面层|[endv](http://www.cnblogs.com/endv/ "endv") | 2016-12-14|china :cn:|
 |2| | | |
 |3| | | |
 |4| | | |
@@ -20,7 +20,7 @@
   
 #捐献者
 ========
-|序|  捐献者  | 捐献时间|捐献内容|贡献途径|捐献者留言|
+|序No|  捐献者 Donor  | 捐献时间 Donate time|捐献内容 Donation content|捐献途径Contribution approach|捐献者留言Donor message|
 |---|---------|---------|--------|--------|----------|
 |1|[endv](http://www.cnblogs.com/endv/ "endv")|2016-12-14|域名endv.cn|域名平台|:cn:
 |2| | | |
