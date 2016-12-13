@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{06972D66-20C2-41FC-ADD9-CEB7A89836FC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CharBox</RootNamespace>
+    <AssemblyName>CharBox</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ChatRichTextBox\ChatRichTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ChatRichTextBox\GifBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ChatRichTextBox\Ole\CHARRANGE.cs" />
+    <Compile Include="ChatRichTextBox\Ole\CLIPFORMAT.cs" />
+    <Compile Include="ChatRichTextBox\Ole\COMRECT.cs" />
+    <Compile Include="ChatRichTextBox\Ole\DVASPECT.cs" />
+    <Compile Include="ChatRichTextBox\Ole\FORMATETC.cs" />
+    <Compile Include="ChatRichTextBox\Ole\GETCLIPBOARDDATAFLAGS.cs" />
+    <Compile Include="ChatRichTextBox\Ole\GETOBJECTOPTIONS.cs" />
+    <Compile Include="ChatRichTextBox\Ole\IAdviseSink.cs" />
+    <Compile Include="ChatRichTextBox\Ole\IDataObject.cs" />
+    <Compile Include="ChatRichTextBox\Ole\IEnumFORMATETC.cs" />
+    <Compile Include="ChatRichTextBox\Ole\IEnumOLEVERB.cs" />
+    <Compile Include="ChatRichTextBox\Ole\IEnumSTATDATA.cs" />
+    <Compile Include="ChatRichTextBox\Ole\IEnumSTATSTG.cs" />
+    <Compile Include="ChatRichTextBox\Ole\ILockBytes.cs" />
+    <Compile Include="ChatRichTextBox\Ole\IOleClientSite.cs" />
+    <Compile Include="ChatRichTextBox\Ole\IOleContainer.cs" />
+    <Compile Include="ChatRichTextBox\Ole\IOleObject.cs" />
+    <Compile Include="ChatRichTextBox\Ole\IRichEditOle.cs" />
+    <Compile Include="ChatRichTextBox\Ole\ISequentialStream.cs" />
+    <Compile Include="ChatRichTextBox\Ole\IStorge.cs" />
+    <Compile Include="ChatRichTextBox\Ole\IStream.cs" />
+    <Compile Include="ChatRichTextBox\Ole\NativeMethods.cs" />
+    <Compile Include="ChatRichTextBox\Ole\REOBJECT.cs" />
+    <Compile Include="ChatRichTextBox\Ole\REOOBJECTFLAGS.cs" />
+    <Compile Include="ChatRichTextBox\Ole\RichEditOle.cs" />
+    <Compile Include="ChatRichTextBox\Ole\STATDATA.cs" />
+    <Compile Include="ChatRichTextBox\Ole\STGM.cs" />
+    <Compile Include="ChatRichTextBox\Ole\STGMEDIUM.cs" />
+    <Compile Include="ChatRichTextBox\Ole\tagLOGPALETTE.cs" />
+    <Compile Include="ChatRichTextBox\Ole\tagOLEVERB.cs" />
+    <Compile Include="ChatRichTextBox\Ole\TYMED.cs" />
+    <Compile Include="DynamicGifLib\DynamicGif.cs" />
+    <Compile Include="DynamicGifLib\DynamicGifClass.cs" />
+    <Compile Include="DynamicGifLib\DynGifManager.cs" />
+    <Compile Include="DynamicGifLib\DynGifManagerClass.cs" />
+    <Compile Include="DynamicGifLib\IDynamicGif.cs" />
+    <Compile Include="DynamicGifLib\IDynGifManager.cs" />
+    <Compile Include="DynamicGifLib\IReDynamicGif.cs" />
+    <Compile Include="DynamicGifLib\ReDynamicGif.cs" />
+    <Compile Include="DynamicGifLib\ReDynamicGifClass.cs" />
+    <Compile Include="EmotionDropdown.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EmotionDropdown.designer.cs">
+      <DependentUpon>EmotionDropdown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Emotion\EditorServiceContext.cs" />
+    <Compile Include="Emotion\EmotionContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Emotion\EmotionItem.cs" />
+    <Compile Include="Emotion\EventArgs.cs" />
+    <Compile Include="Emotion\GripBounds.cs" />
+    <Compile Include="Emotion\ItemCollectionBase.cs" />
+    <Compile Include="Emotion\Nativemethods.cs" />
+    <Compile Include="Emotion\PanelDesigner.cs" />
+    <Compile Include="Emotion\Popup.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ImageOleLib\GifAnimator.cs" />
+    <Compile Include="ImageOleLib\GifAnimatorClass.cs" />
+    <Compile Include="ImageOleLib\IGifAnimator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Screenshot\CaptureImageTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screenshot\CaptureImageTool.Designer.cs">
+      <DependentUpon>CaptureImageTool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screenshot\CaptureImageToolColorTable.cs" />
+    <Compile Include="Screenshot\ColorLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Screenshot\ColorSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Screenshot\ColorSelector.Designer.cs">
+      <DependentUpon>ColorSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screenshot\ControlPaintEx.cs" />
+    <Compile Include="Screenshot\DrawStyle.cs" />
+    <Compile Include="Screenshot\DrawTextData.cs" />
+    <Compile Include="Screenshot\DrawToolsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Screenshot\DrawToolsControl.designer.cs">
+      <DependentUpon>DrawToolsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screenshot\DrawToolsDockStyle.cs" />
+    <Compile Include="Screenshot\GraphicsPathHelper.cs" />
+    <Compile Include="Screenshot\NativeMethods.cs" />
+    <Compile Include="Screenshot\OperateManager.cs" />
+    <Compile Include="Screenshot\OperateObject.cs" />
+    <Compile Include="Screenshot\OperateType.cs" />
+    <Compile Include="Screenshot\RegionHelper.cs" />
+    <Compile Include="Screenshot\RoundStyle.cs" />
+    <Compile Include="Screenshot\SizeGrip.cs" />
+    <Compile Include="Screenshot\ToolStripRendererEx.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmotionDropdown.resx">
+      <DependentUpon>EmotionDropdown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screenshot\CaptureImageTool.resx">
+      <DependentUpon>CaptureImageTool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screenshot\ColorSelector.resx">
+      <DependentUpon>ColorSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screenshot\DrawToolsControl.resx">
+      <DependentUpon>DrawToolsControl.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Face\1.gif" />
+    <None Include="Resources\Face\2.gif" />
+    <None Include="Resources\Face\3.gif" />
+    <None Include="Resources\Face\4.gif" />
+    <None Include="Resources\Face\5.gif" />
+    <None Include="Resources\Face\6.gif" />
+    <None Include="Resources\Face\7.gif" />
+    <None Include="Resources\Face\8.gif" />
+    <None Include="Resources\Face\9.gif" />
+    <None Include="Resources\Face\10.gif" />
+    <None Include="Resources\Face\11.gif" />
+    <None Include="Resources\Face\12.gif" />
+    <None Include="Resources\Face\13.gif" />
+    <None Include="Resources\Face\14.gif" />
+    <None Include="Resources\Face\15.gif" />
+    <None Include="Resources\Face\16.gif" />
+    <None Include="Resources\Face\17.gif" />
+    <None Include="Resources\Face\18.gif" />
+    <None Include="Resources\Face\19.gif" />
+    <None Include="Resources\Face\20.gif" />
+    <None Include="Resources\Face\21.gif" />
+    <None Include="Resources\Face\22.gif" />
+    <None Include="Resources\Face\23.gif" />
+    <None Include="Resources\Face\24.gif" />
+    <None Include="Resources\Face\25.gif" />
+    <None Include="Resources\Face\26.gif" />
+    <None Include="Resources\Face\27.gif" />
+    <None Include="Resources\Face\28.gif" />
+    <None Include="Resources\Face\29.gif" />
+    <None Include="Resources\Face\30.gif" />
+    <None Include="Resources\Face\31.gif" />
+    <None Include="Resources\Face\32.gif" />
+    <None Include="Resources\Face\33.gif" />
+    <None Include="Resources\Face\34.gif" />
+    <None Include="Resources\Face\35.gif" />
+    <None Include="Resources\Face\36.gif" />
+    <None Include="Resources\Face\37.gif" />
+    <None Include="Resources\Face\38.gif" />
+    <None Include="Resources\Face\39.gif" />
+    <None Include="Resources\Face\40.gif" />
+    <None Include="Resources\Face\41.gif" />
+    <None Include="Resources\Face\42.gif" />
+    <None Include="Resources\Face\43.gif" />
+    <None Include="Resources\Face\44.gif" />
+    <None Include="Resources\Face\45.gif" />
+    <None Include="Resources\Face\46.gif" />
+    <None Include="Resources\Face\47.gif" />
+    <None Include="Resources\Face\48.gif" />
+    <None Include="Resources\Face\49.gif" />
+    <None Include="Resources\Face\50.gif" />
+    <None Include="Resources\Face\51.gif" />
+    <None Include="Resources\Face\52.gif" />
+    <None Include="Resources\Face\53.gif" />
+    <None Include="Resources\Face\54.gif" />
+    <None Include="Resources\Face\55.gif" />
+    <None Include="Resources\Face\56.gif" />
+    <None Include="Resources\Face\57.gif" />
+    <None Include="Resources\Face\58.gif" />
+    <None Include="Resources\Face\59.gif" />
+    <None Include="Resources\Face\60.gif" />
+    <None Include="Resources\Face\61.gif" />
+    <None Include="Resources\Face\62.gif" />
+    <None Include="Resources\Face\63.gif" />
+    <None Include="Resources\Face\64.gif" />
+    <None Include="Resources\Face\65.gif" />
+    <None Include="Resources\Face\66.gif" />
+    <None Include="Resources\Face\67.gif" />
+    <None Include="Resources\Face\68.gif" />
+    <None Include="Resources\Face\69.gif" />
+    <None Include="Resources\Face\70.gif" />
+    <None Include="Resources\Face\71.gif" />
+    <None Include="Resources\Face\72.gif" />
+    <None Include="Resources\Face\73.gif" />
+    <None Include="Resources\Face\74.gif" />
+    <None Include="Resources\Face\75.gif" />
+    <None Include="Resources\Face\76.gif" />
+    <None Include="Resources\Face\77.gif" />
+    <None Include="Resources\Face\78.gif" />
+    <None Include="Resources\Face\79.gif" />
+    <None Include="Resources\Face\80.gif" />
+    <None Include="Resources\Face\81.gif" />
+    <None Include="Resources\Face\82.gif" />
+    <None Include="Resources\Face\83.gif" />
+    <None Include="Resources\Face\84.gif" />
+    <None Include="Resources\Face\85.gif" />
+    <None Include="Resources\Face\86.gif" />
+    <None Include="Resources\Face\87.gif" />
+    <None Include="Resources\Face\88.gif" />
+    <None Include="Resources\Face\89.gif" />
+    <None Include="Resources\Face\90.gif" />
+    <None Include="Resources\Face\91.gif" />
+    <None Include="Resources\Face\92.gif" />
+    <None Include="Resources\Face\93.gif" />
+    <None Include="Resources\Face\94.gif" />
+    <None Include="Resources\Face\95.gif" />
+    <None Include="Resources\Face\96.gif" />
+    <None Include="Resources\Face\97.gif" />
+    <None Include="Resources\Face\98.gif" />
+    <None Include="Resources\Face\99.gif" />
+    <None Include="Resources\Face\100.gif" />
+    <None Include="Resources\Face\101.gif" />
+    <None Include="Resources\Face\102.gif" />
+    <None Include="Resources\Face\103.gif" />
+    <None Include="Resources\Face\104.gif" />
+    <None Include="Resources\Face\105.gif" />
+    <None Include="Resources\Face\106.gif" />
+    <None Include="Resources\Face\107.gif" />
+    <None Include="Resources\Face\108.gif" />
+    <None Include="Resources\Face\109.gif" />
+    <None Include="Resources\Face\110.gif" />
+    <None Include="Resources\Face\111.gif" />
+    <None Include="Resources\Face\112.gif" />
+    <None Include="Resources\Face\113.gif" />
+    <None Include="Resources\Face\114.gif" />
+    <None Include="Resources\Face\115.gif" />
+    <None Include="Resources\Face\116.gif" />
+    <None Include="Resources\Face\117.gif" />
+    <None Include="Resources\Face\118.gif" />
+    <None Include="Resources\Face\119.gif" />
+    <None Include="Resources\Face\120.gif" />
+    <None Include="Resources\Face\121.gif" />
+    <None Include="Resources\Face\122.gif" />
+    <None Include="Resources\Face\123.gif" />
+    <None Include="Resources\Face\124.gif" />
+    <None Include="Resources\Face\125.gif" />
+    <None Include="Resources\Face\126.gif" />
+    <None Include="Resources\Face\127.gif" />
+    <None Include="Resources\Face\128.gif" />
+    <None Include="Resources\Face\129.gif" />
+    <None Include="Resources\Face\130.gif" />
+    <None Include="Resources\Face\131.gif" />
+    <None Include="Resources\Face\132.gif" />
+    <None Include="Resources\Face\133.gif" />
+    <None Include="Resources\Face\134.gif" />
+    <None Include="Resources\Face\0.gif" />
+    <None Include="Resources\Icons\A.png" />
+    <None Include="Resources\Icons\B.png" />
+    <None Include="Resources\Icons\C.png" />
+    <None Include="Resources\Icons\J.png" />
+    <None Include="Resources\Icons\JD.png" />
+    <None Include="Resources\Icons\K.png" />
+    <None Include="Resources\Icons\L.png" />
+    <None Include="Resources\Icons\ok.png" />
+    <None Include="Resources\Icons\Redo.png" />
+    <None Include="Resources\Icons\Seve.png" />
+    <None Include="Resources\Icons\U.png" />
+    <None Include="Resources\Icons\x.png" />
+    <None Include="Resources\Icons\Y.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
