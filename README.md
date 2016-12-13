@@ -3,7 +3,7 @@
 # 开源通信(C#) 【Open source communication】     [博客 Blog](http://www.cnblogs.com/endv/ "endv Blog")  
  `socket`  `通信` `C#` `网络编程`  `Network programming` `Communications`       
       目前，这个项目已拥有了一个注册的域名，仍需要更多的帮助来完成这项工作。您可以选择[贡献](https://github.com/endv "贡献") 或[捐献](http://shang.qq.com/wpa/qunwpa?idkey=d4f62802376c83872a076f7ae30ac86ee7946fb62f59f6ef130a70c6883ac737 "捐献")来帮助项目的发展，你的名字会留存于此。      
-    【At present, the project has a registered domain name, still need more help to complete the work. You can choose to [contribute](https://github.com/endv "contribute") or [donate](http://shang.qq.com/wpa/qunwpa?idkey=d4f62802376c83872a076f7ae30ac86ee7946fb62f59f6ef130a70c6883ac737 "donate")to the development of the project, and your name will remain in this.】    
+    【At present, the project has a registered domain name, still need more help to complete the work. You can choose to [contribute](https://github.com/endv "contribute") or [donate](http://shang.qq.com/wpa/qunwpa?idkey=d4f62802376c83872a076f7ae30ac86ee7946fb62f59f6ef130a70c6883ac737 "donate") to the development of the project, and your name will remain in this.】    
 
 #贡献者 【Choose】
 ==============
