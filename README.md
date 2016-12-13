@@ -1,9 +1,10 @@
 # Endv.cn
  
-# __开源通信(C#)__  [博客](http://www.cnblogs.com/endv/ "我的博客")
+# __开源通信(C#)__  [博客](http://www.cnblogs.com/endv/ "我的博客")  
+ `socket`  `通信` `C#` `网络编程`
   
     共同研究、共同讨论   
-    QQ global 194204929  
+    QQ群：194204929   
  
-# Custom for Visual Studio
+# for Visual Studio
    
