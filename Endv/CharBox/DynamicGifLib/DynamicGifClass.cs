@@ -4,10 +4,16 @@ using System.Runtime.InteropServices;
 
 namespace CharBox
 {
+    /// <summary>
+    /// 动态GIF类
+    /// </summary>
 	[ClassInterface(ClassInterfaceType.None), Guid("D4B02AAF-6E53-41E3-B411-9C9F90BCF237"), TypeLibType(2)]
 	[ComImport]
 	public class DynamicGifClass : IDynamicGif, DynamicGif
 	{
+        /// <summary>
+        /// 启用
+        /// </summary>
 		[DispId(-514)]
 		public virtual extern bool Enabled
 		{
@@ -43,6 +49,9 @@ namespace CharBox
 			set;
 		}
 
+        /// <summary>
+        /// 重组模式
+        /// </summary>
 		[DispId(7)]
 		public virtual extern bool REMode
 		{

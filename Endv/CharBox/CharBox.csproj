@@ -75,15 +75,6 @@
     <Compile Include="ChatRichTextBox\Ole\tagLOGPALETTE.cs" />
     <Compile Include="ChatRichTextBox\Ole\tagOLEVERB.cs" />
     <Compile Include="ChatRichTextBox\Ole\TYMED.cs" />
-    <Compile Include="DynamicGifLib\DynamicGif.cs" />
-    <Compile Include="DynamicGifLib\DynamicGifClass.cs" />
-    <Compile Include="DynamicGifLib\DynGifManager.cs" />
-    <Compile Include="DynamicGifLib\DynGifManagerClass.cs" />
-    <Compile Include="DynamicGifLib\IDynamicGif.cs" />
-    <Compile Include="DynamicGifLib\IDynGifManager.cs" />
-    <Compile Include="DynamicGifLib\IReDynamicGif.cs" />
-    <Compile Include="DynamicGifLib\ReDynamicGif.cs" />
-    <Compile Include="DynamicGifLib\ReDynamicGifClass.cs" />
     <Compile Include="EmotionDropdown.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -103,9 +94,6 @@
     <Compile Include="Emotion\Popup.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ImageOleLib\GifAnimator.cs" />
-    <Compile Include="ImageOleLib\GifAnimatorClass.cs" />
-    <Compile Include="ImageOleLib\IGifAnimator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

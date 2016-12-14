@@ -58,7 +58,27 @@ namespace CharBox
             }
             this.ReleaseRichEditOleInterface();
         }
- 
+
+        ///// <summary>
+        ///// 调用默认构造函数，然后设置文本颜色。
+        ///// </summary>
+        ///// <param name="_textColor"></param>
+        //public ChatRichTextBox(RtfColor _textColor) : this()
+        //{
+        //    textColor = _textColor;
+        //}
+
+        ///// <summary>
+        ///// 调用默认构造函数，然后设置文本和突出的颜色。
+        ///// </summary>
+        ///// <param name="_textColor"></param>
+        ///// <param name="_highlightColor"></param>
+        //public ChatRichTextBox(RtfColor _textColor, RtfColor _highlightColor) : this()
+        //{
+        //    textColor = _textColor;
+        //    highlightColor = _highlightColor;
+        //}
+
         #endregion
 
 
@@ -102,7 +122,7 @@ namespace CharBox
         /// <summary>
         /// 列表中的对象数量
         /// </summary>
-        //private int _index;
+        private int _index;
 
         // 默认文本颜色
         private RtfColor textColor;
@@ -322,19 +342,73 @@ namespace CharBox
         #endregion
 
         #region 方法 InsertImage
-       
-        public bool InsertImageUseGifBox(Image image)
+        //public bool InsertImageUseImageOle(string path)
+        //{
+        //    try
+        //    {//GIF动画类
+        //        IGifAnimator gif = new GifAnimatorClass();
+        //        gif.LoadFromFile(path);
+        //        gif.TriggerFrameChange();
+        //        if (gif is IOleObject)
+        //        {
+        //            int index = _index++;
+        //            REOBJECT reObj = RichEditOle.InsertOleObject(
+        //                (IOleObject)gif,
+        //                index);
+        //            RichEditOle.UpdateObjects(reObj.cp);
+        //            OleObjectList.Add(index, reObj);
+        //            return true;
+        //        }
+        //        return false;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return false;
+        //    }
+        //}
+
+        /// <summary>
+        /// 插入动态图像
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        //public bool InsertImageUseDynamic(string path)
+        //{
+        //    try
+        //    {
+        //        IDynamicGif gif = new DynamicGifClass();
+        //        gif.LoadFromFile(path);
+        //        gif.Play();
+        //        if (gif is IOleObject)
+        //        {
+        //            int index = _index++;
+        //            REOBJECT reObj = RichEditOle.InsertOleObject(
+        //                (IOleObject)gif,
+        //                index);
+        //            RichEditOle.UpdateObjects(reObj.cp);
+        //            OleObjectList.Add(index, reObj);
+        //            return true;
+        //        }
+        //        return false;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return false;
+        //    }
+        //}
+
+        public bool InsertImageUseGifBox(Image path)
         {
             try
             {
                 GifBox gif = new GifBox();
                 gif.BackColor = base.BackColor;
-                gif.Image = image;
+                gif.Image = path;
                 RichEditOle.InsertControl(gif);
 #warning 调试
                 AppendRtf(gif.Name);
                 gif = null;
-                image = null;
+                path = null;
 #warning 调试
                 return true;
             }

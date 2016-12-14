@@ -6,8 +6,7 @@ using System.Runtime.InteropServices;
 namespace CharBox
 {
     /// <summary>
-    /// 如需向CRichEditCtrl里面插入Ole对象，
-    /// /需要调用 GetIRichEditOle 获得此CRichEditCtrl的IRichEditOle接口
+    /// 如需向 CRichEditCtrl 里面插入Ole对象，需要调用 GetIRichEditOle 获得此 CRichEditCtrl 的 IRichEditOle 接口
     /// </summary>
     [ComImport, 
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown), 
@@ -69,7 +68,7 @@ namespace CharBox
         [return: MarshalAs(UnmanagedType.I4)] 
         [PreserveSig]
         int ConvertObject(int iob, Guid rclsidNew, string lpstrUserTypeNew);
-
+        
         /// <summary>
         /// 激活
         /// </summary>

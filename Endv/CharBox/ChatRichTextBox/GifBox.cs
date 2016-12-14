@@ -17,8 +17,8 @@ namespace CharBox
         private Rectangle _imageRectangle;
         private EventHandler _eventAnimator;
         private bool _canAnimate;
-        //private Color _borderColor = Color.Transparent;
-        private Color _borderColor = Color.BlueViolet;
+        private Color _borderColor = Color.Transparent;
+        //private Color _borderColor = Color.BlueViolet;
         #endregion
 
         #region 构造函数
@@ -65,6 +65,7 @@ namespace CharBox
                 }
 
                 Invalidate(ImageRectangle);
+                //将多帧图像显示为动画。
                 if (!DesignMode) StartAnimate();
             }
         }
@@ -181,6 +182,9 @@ namespace CharBox
             }
         }
 
+        /// <summary>
+        ///  终止正在运行的动画。
+        /// </summary>
         private void StopAnimate()
         {
             if (CanAnimate)
@@ -189,6 +193,9 @@ namespace CharBox
             }
         }
 
+        /// <summary>
+        /// 使帧在指定的图像中前移。 新帧在下一次呈现图像时绘制。 此方法只适用于包含基于时间的帧的图像。
+        /// </summary>
         private void UpdateImage()
         {
             if (CanAnimate)

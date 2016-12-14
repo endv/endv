@@ -7,8 +7,8 @@ using System.Drawing;
 namespace CharBox
 {
     /// <summary>
-    /// REOBJECT结构体包含一个对象的下列信息：
-    /// 
+    /// REOBJECT 结构体，包含一个对象的下列信息：
+    /// </summary>
     /// cbStruct  - Structure size, in bytes. 
     /// cp        - Character position of the object. 
     /// clsid     - 对象的类标示符.
@@ -20,7 +20,7 @@ namespace CharBox
     /// dwFlags  - 标示是否对象是打开状态，是是允许改变大小，是否当前是选中状态.
     /// dwUser  - 为用户保留的用于定义用户自己的数据.
     ///  
-    /// </summary>
+    /// 
     [StructLayout(LayoutKind.Sequential)]
     public class REOBJECT
     {

@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 namespace CharBox
 {
     /// <summary>
-    /// 如果需要往ole容器内嵌入一个嵌入对象(embedded object )
+    /// 嵌入对象接口 如果需要往ole容器内嵌入一个嵌入对象(embedded object )
     /// 则可以利用这个接口获取嵌入对象在容器内的定位信息，和嵌入对象的别名(moniker)，显示的范围，
     /// 和用户界面以及容器提供的其他信息。被嵌入的对象必须通过调用IOleClientSite来获得
     /// 容器所提供的服务。容器会对每个它包含的复合文档(compound-document)提供一个IOleClientSite实例.
