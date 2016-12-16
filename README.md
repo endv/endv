@@ -11,13 +11,7 @@
 |---|--------|------------|----|------|------|-----|----|----|
 |1|cn|界面层|endv.exe|程序主目录，界面层|[endv](http://www.cnblogs.com/endv/ "endv") | 2016-12-14|china :cn:|
 |2| | | |
-|3| | | |
-|4| | | |
-|5| | | |
-|6| | | |
-|7| | | |
-|8| | | |
-|9| | | |  
+|3| | | | 
   
 #捐献者【Donate】
 ========
@@ -25,13 +19,11 @@
 |---|---------|---------|--------|--------|----------|
 |1|[endv](http://www.cnblogs.com/endv/ "endv")|2016-12-14|域名endv.cn|域名平台|:cn:
 |2| | | |
-|3| | | |
-|4| | | |
-|5| | | |
-|6| | | |
-|7| | | |
-|8| | | |
-|9| | | |
+|3| | | | 
+   
+# Quick setup — if you’ve done this kind of thing before
+    https://github.com/endv/endv.git
+   
    
     共同研究、共同讨论   Joint research and discussion
     QQ群：194204929   <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=d4f62802376c83872a076f7ae30ac86ee7946fb62f59f6ef130a70c6883ac737"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="开源通信（endv）" title="开源通信（endv）"></a> 
