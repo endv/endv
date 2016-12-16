@@ -56,7 +56,7 @@ namespace CharBox
                 xDpi = _graphics.DpiX;
                 yDpi = _graphics.DpiY;
             }
-            this.ReleaseRichEditOleInterface();
+            //this.ReleaseRichEditOleInterface();
         }
  
         #endregion
@@ -105,6 +105,8 @@ namespace CharBox
         //private int _index;
 
         // 默认文本颜色
+
+            //2
         private RtfColor textColor;
 
         // 默认文本背景颜色
@@ -320,9 +322,25 @@ namespace CharBox
         }
 
         #endregion
-
+        //protected override void WndProc(ref Message m)
+        //{
+        //    switch (m.Msg)
+        //    {
+        //        case 0x0100:
+        //            if (this.ReadOnly)
+        //                return;
+        //            break;
+        //        case 0X0102:
+        //            if (this.ReadOnly)
+        //                return;
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //    base.WndProc(ref m);
+        //}
         #region 方法 InsertImage
-       
+
         public bool InsertImageUseGifBox(Image image)
         {
             try
@@ -344,291 +362,31 @@ namespace CharBox
             }
         }
 
-        public bool InsertImageUseGifBox(string path)
-        {
-            try
-            {
-                GifBox gif = new GifBox();
-                gif.BackColor = base.BackColor;
-                gif.Image = Image.FromFile(path);
-                RichEditOle.InsertControl(gif);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
+   
         #endregion InsertImage
 
-        #region 方法 InsertLink
-        /// <summary>
-        /// 插入一个给定的文本作为一个链接到richtextbox当前插入位置。
-        /// </summary>
-        /// <param name="text">Text to be inserted</param>
-        public void InsertLink(string text)
-        {
-            InsertLink(text, this.SelectionStart);
-        }
 
-        /// <summary>
-        /// 在一个给定的位置插入一个给定的文本作为链接。
-        /// </summary>
-        /// <param name="text">Text to be inserted</param>
-        /// <param name="position">Insert position</param>
-        public void InsertLink(string text, int position)
-        {
-            if (position < 0 || position > this.Text.Length)
-                throw new ArgumentOutOfRangeException("position");
+        #region 方法 添加文本 
 
-            this.SelectionStart = position;
-            this.SelectedText = text;
-            this.Select(position, text.Length);
-            this.SetSelectionLink(true);
-            this.Select(position + text.Length, 0);
-        }
-
-        /// <summary>
-        /// 在当前输入位置插入一个给定的文本作为链接。
-        /// The link text is followed by a hash (#) and the given hyperlink text, both of
-        /// them invisible.
-        /// When clicked on, the whole link text and hyperlink string are given in the
-        /// LinkClickedEventArgs.
-        /// </summary>
-        /// <param name="text">Text to be inserted</param>
-        /// <param name="hyperlink">Invisible hyperlink string to be inserted</param>
-        public void InsertLink(string text, string hyperlink)
-        {
-            InsertLink(text, hyperlink, this.SelectionStart);
-        }
-
-        /// <summary>
-        /// Insert a given text at a given position as a link. The link text is followed by
-        /// a hash (#) and the given hyperlink text, both of them invisible.
-        /// When clicked on, the whole link text and hyperlink string are given in the
-        /// LinkClickedEventArgs.
-        /// </summary>
-        /// <param name="text">Text to be inserted</param>
-        /// <param name="hyperlink">Invisible hyperlink string to be inserted</param>
-        /// <param name="position">Insert position</param>
-        public void InsertLink(string text, string hyperlink, int position)
-        {
-            if (position < 0 || position > this.Text.Length)
-                throw new ArgumentOutOfRangeException("position");
-
-            this.SelectionStart = position;
-            //this.SelectedRtf = @"{\rtf1\ansi "+text+@"\v #"+hyperlink+@"\v0}";// 只能显示英文
-            this.SelectedRtf = @"{\rtf1\ansi\cpg936 " + text + @"\v #" + hyperlink + @"\v0}";  // 可以显示中文
-            this.Select(position, text.Length + hyperlink.Length + 1);
-            this.SetSelectionLink(true);
-            this.Select(position + text.Length + hyperlink.Length + 1, 0);
-        }
-
-        /// <summary>
-        /// 设置当前选择的链接样式
-        /// </summary>
-        /// <param name="link">真：设置链接样式，假：清晰的链接样式 true: set link style, false: clear link style</param>
-        public void SetSelectionLink(bool link)
-        {
-            SetSelectionStyle(CFM_LINK, link ? CFE_LINK : 0);
-        }
-        /// <summary>
-        /// 获取当前选择的链接样式
-        /// </summary>
-        /// <returns>0: link style not set, 1: link style set, -1: mixed</returns>
-        public int GetSelectionLink()
-        {
-            return GetSelectionStyle(CFM_LINK, CFE_LINK);
-        }
-
-        #endregion InsertLink
-
-        #region 方法 选择并设置式样
-        private void SetSelectionStyle(UInt32 mask, UInt32 effect)
-        {
-            CHARFORMAT2_STRUCT cf = new CHARFORMAT2_STRUCT();
-            cf.cbSize = (UInt32)Marshal.SizeOf(cf);
-            cf.dwMask = mask;
-            cf.dwEffects = effect;
-
-            IntPtr wpar = new IntPtr(SCF_SELECTION);
-            IntPtr lpar = Marshal.AllocCoTaskMem(Marshal.SizeOf(cf));
-            Marshal.StructureToPtr(cf, lpar, false);
-            //选择并设置式样
-            IntPtr res = SendMessage(Handle, EM_SETCHARFORMAT, wpar, lpar);
-
-            Marshal.FreeCoTaskMem(lpar);
-        }
-
-        private int GetSelectionStyle(UInt32 mask, UInt32 effect)
-        {
-            CHARFORMAT2_STRUCT cf = new CHARFORMAT2_STRUCT();
-            cf.cbSize = (UInt32)Marshal.SizeOf(cf);
-            cf.szFaceName = new char[32];
-
-            IntPtr wpar = new IntPtr(SCF_SELECTION);
-            IntPtr lpar = Marshal.AllocCoTaskMem(Marshal.SizeOf(cf));
-            Marshal.StructureToPtr(cf, lpar, false);
-
-            IntPtr res = SendMessage(Handle, EM_GETCHARFORMAT, wpar, lpar);
-
-            cf = (CHARFORMAT2_STRUCT)Marshal.PtrToStructure(lpar, typeof(CHARFORMAT2_STRUCT));
-
-            int state;
-            // dwMask holds the information which properties are consistent throughout the selection:
-            if ((cf.dwMask & mask) == mask)
-            {
-                if ((cf.dwEffects & effect) == effect)
-                    state = 1;
-                else
-                    state = 0;
-            }
-            else
-            {
-                state = -1;
-            }
-
-            Marshal.FreeCoTaskMem(res);
-            Marshal.FreeCoTaskMem(wpar);
-            Marshal.FreeCoTaskMem(lpar);
-            return state;
-        }
-        /////////////////////////////////////////////
-        #endregion Style
-
-        #region 方法 添加文本RTF或RichTextBox内容
-
-        /// <summary>
-        /// 假设作为一个参数是有效的RTF文本并试图把它作为RTF控制的内容通过字符串。Assumes the string passed as a paramter is valid RTF text and attempts
-        /// to append it as RTF to the content of the control.
-        /// </summary>
-        /// <param name="_rtf"></param>
         public void AppendRtf(string _rtf)
         {
             if (_rtf != null)
-                // 将插入到文本的末尾 Move caret to the end of the text
+                // 插入到文本尾
                 this.Select(this.TextLength, 0);
 
-            // 由于SelectedRtf是空的，这会追加字符串的RTF结束 Since SelectedRtf is null, this will append the string to the
-            // end of the existing RTF
+            // 由于SelectedRtf是空的，这会追加字符串的RTF结束  
             this.SelectedRtf = _rtf;
         }
 
-        /// <summary>
-        /// 假定一个参数是有效的RTF文本并试图将其作为RTF控制的内容通过字符串。
-        /// </summary>
-        /// <remarks>
-        /// 注：文本插入在插入时，如果选择任何文本，文本替换。
-        /// </remarks>
-        /// <param name="_rtf"></param>
-        public void InsertRtf(string _rtf)
-        {
-            this.SelectedRtf = _rtf;
-        }
-
-        /// <summary>
-        /// 附加的文本使用当前字体，文本，和高亮颜色。
-        /// </summary>
-        /// <param name="_text"></param>
-        public void AppendTextAsRtf(string _text)
-        {
-            AppendTextAsRtf(_text, this.Font);
-        }
-
-
-        /// <summary>
-        /// 附加的文本使用的字体，与当前文本和突出
-        /// colors.
-        /// </summary>
-        /// <param name="_text"></param>
-        /// <param name="_font"></param>
-        public void AppendTextAsRtf(string _text, Font _font)
-        {
-            AppendTextAsRtf(_text, _font, textColor);
-        }
-
-        /// <summary>
-        /// 附加的文本使用的字体和文字颜色，和当前突出的颜色。
-        /// </summary>
-        /// <param name="_text"></param>
-        /// <param name="_font"></param>
-        /// <param name="_color"></param>
-        public void AppendTextAsRtf(string _text, Font _font, RtfColor _textColor)
-        {
-            AppendTextAsRtf(_text, _font, _textColor, highlightColor);
-        }
-
-        /// <summary>
-        /// 附加的文本使用的字体，文本，和高亮颜色。只需将插入到RichTextBox文本的结束和调用插入。
-        /// </summary>
-        /// <param name="_text"></param>
-        /// <param name="_font"></param>
-        /// <param name="_textColor"></param>
-        /// <param name="_backColor"></param>
-        public void AppendTextAsRtf(string _text, Font _font, RtfColor _textColor, RtfColor _backColor)
-        {
-            //  选择文本框中的文本范围。 移动 carret 结束的文本
-            this.Select(this.TextLength, 0);
-
-            InsertTextAsRtf(_text, _font, _textColor, _backColor);
-        }
-
-        #endregion
-
-        #region 方法 插入文本
-
-        /// <summary>
-        /// 使用当前字体、文本和高亮颜色插入文本。
-        /// </summary>
-        /// <param name="_text"></param>
-        public void InsertTextAsRtf(string _text)
-        {
-            InsertTextAsRtf(_text, this.Font);
-        }
-
-
-        /// <summary>
-        /// 使用给定的字体插入文本，并将当前文本和高亮显示
-        /// colors.
-        /// </summary>
-        /// <param name="_text"></param>
-        /// <param name="_font"></param>
-        public void InsertTextAsRtf(string _text, Font _font)
-        {
-            InsertTextAsRtf(_text, _font, textColor);
-        }
-
-        /// <summary>
-        /// 使用给定的字体和文本颜色插入文本，并将当前的突出显示颜色。
-        /// </summary>
-        /// <param name="_text"></param>
-        /// <param name="_font"></param>
-        /// <param name="_color"></param>
-        public void InsertTextAsRtf(string _text, Font _font, RtfColor _textColor)
-        {
-            InsertTextAsRtf(_text, _font, _textColor, highlightColor);
-        }
-
-        /// <summary>
-        /// 使用给定的字体、文本和突出的颜色插入文本。本文用RTF代码，指定的格式保存。
-        /// /你只能指定有效的RTF的RichTextBox.RTF格式属性，其他的则抛出一个异常。
-        /// RTF格式的字符串应该遵循这样的格式…  
-        /// 
+       
         /// {\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{[FONTS]}{\colortbl ;[COLORS]}}
         /// \viewkind4\uc1\pard\cf1\f0\fs20 [DOCUMENT AREA] }
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 注：文本插入在插入时，如果选择任何文本，文本替换。
-        /// </remarks>
-        /// <param name="_text"></param>
-        /// <param name="_font"></param>
-        /// <param name="_color"></param>
-        /// <param name="_color"></param>
         public void InsertTextAsRtf(string _text, Font _font, RtfColor _textColor, RtfColor _backColor)
         {
+            if (_font == null) _font = this.Font; if (_textColor == 0) _textColor = textColor; if (_backColor == 0) _backColor = highlightColor;
 
             StringBuilder _rtf = new StringBuilder();
+            this.Select(this.TextLength, 0);
 
             // 追加的RTF头
             _rtf.Append(RTF_HEADER);
@@ -647,11 +405,10 @@ namespace CharBox
         }
 
         /// <summary>
-        /// 创建RTF被插入的文档区域。文件区（在这种情况下）
-        /// 组成的文本被添加为RTF和所有的格式通过字体对象指定。这应该有形式…
+        /// 创建文档区域
         /// 
-        /// \viewkind4\uc1\pard\cf1\f0\fs20 [DOCUMENT AREA] }
-        ///
+        /// \viewkind4\uc1\pard\cf1\f0\fs20 [DOCUMENT AREA] } 
+        /// 
         /// </summary>
         /// <param name="_text"></param>
         /// <param name="_font"></param>
@@ -914,8 +671,7 @@ namespace CharBox
         /// 标记用于指定Windows图元文件的格式返回
         /// </param>
         [DllImportAttribute("gdiplus.dll")]
-        private static extern uint GdipEmfToWmfBits(IntPtr _hEmf, uint _bufferSize,
-            byte[] _buffer, int _mappingMode, EmfToWmfBitsFlags _flags);
+        private static extern uint GdipEmfToWmfBits(IntPtr _hEmf, uint _bufferSize, byte[] _buffer, int _mappingMode, EmfToWmfBitsFlags _flags);
 
 
         /// <summary>
@@ -1103,105 +859,8 @@ namespace CharBox
         }
 
         #endregion
-
-        protected IRichEditOle IRichEditOleValue = null;
-        protected IntPtr IRichEditOlePtr = IntPtr.Zero;
-
-        /// <summary>
-        /// 从 RichTextBox 控件得到的 IRichEditOle 的接口。
-        /// </summary>
-        /// <returns>The <see cref="IRichEditOle"/> interface.</returns>
-        public IRichEditOle GetRichEditOleInterface()
-        {
-            if (this.IRichEditOleValue == null)
-            {
-                //REOBJECT reObject = new REOBJECT();
-                //reObject.cp = 0;
-                //reObject.dwFlags = GetObjectOptions.REO_GETOBJ_POLEOBJ;
-                //IntPtr ptr = Marshal.AllocCoTaskMem(reObject.cbStruct);
-                //Marshal.StructureToPtr(reObject, ptr, false);
-
-                // Allocate the ptr that EM_GETOLEINTERFACE will fill in.
-                IntPtr ptr = Marshal.AllocCoTaskMem(Marshal.SizeOf(typeof(IntPtr)));    // Alloc the ptr.
-                Marshal.WriteIntPtr(ptr, IntPtr.Zero);  // Clear it.
-                try
-                {
-                    if (IntPtr.Zero != SendMessage(this.Handle, NativeMethods.EM_GETOLEINTERFACE, IntPtr.Zero, ptr))
-                    {
-                        // 读取返回的指针。
-                        IntPtr pRichEdit = Marshal.ReadIntPtr(ptr);
-                        try
-                        {
-                            if (pRichEdit != IntPtr.Zero)
-                            {
-                                // IRichEditOle 查询的接口。
-                                Guid guid = new Guid("00020D00-0000-0000-c000-000000000046");
-                                Marshal.QueryInterface(pRichEdit, ref guid, out this.IRichEditOlePtr);
-
-                                // 用C #接口为 IRichEditOle。
-                                this.IRichEditOleValue = (IRichEditOle)Marshal.GetTypedObjectForIUnknown(this.IRichEditOlePtr, typeof(IRichEditOle));
-                                if (this.IRichEditOleValue == null)
-                                {
-                                    throw new Exception("未能获取接口的对象包装器.");
-                                }
-                            }
-                            else
-                            {
-                                throw new Exception("Failed to get the pointer.");
-                            }
-                        }
-                        finally
-                        {
-                            Marshal.Release(pRichEdit);
-                        }
-                    }
-                    else
-                    {
-                        throw new Exception("EM_GETOLEINTERFACE 失败.");
-                    }
-                }
-                catch (Exception err)
-                {
-                    System.Diagnostics.Trace.WriteLine(err.ToString());
-                    this.ReleaseRichEditOleInterface();
-                }
-                finally
-                {
-                    // Free the ptr memory.
-                    Marshal.FreeCoTaskMem(ptr);
-                    //Marshal.DestroyStructure(ptr, typeof(REOBJECT));
-                }
-            }
-            return this.IRichEditOleValue;
-        }
-
-        /// <summary>
-        /// 释放 IRichEditOle 接口，如果这还不够。 
-        /// </summary>
-        /// <remarks>如果需要的话，可以自动调用。</remarks>
-        public void ReleaseRichEditOleInterface()
-        {
-            if (this.IRichEditOlePtr != IntPtr.Zero)
-            {
-                Marshal.Release(this.IRichEditOlePtr);
-            }
-
-            this.IRichEditOlePtr = IntPtr.Zero;
-            this.IRichEditOleValue = null;
-        }
-
-        #region IDisposable Members
-
-        new public void Dispose()
-        {
-            this.ReleaseRichEditOleInterface();
-        }
-
-        #endregion
-
-        #region struct enum
-
-
+ 
+        #region struct enum 
         // 在RTF文档的颜色定义
         private struct RtfColorDef
         {
@@ -1235,8 +894,7 @@ namespace CharBox
             public const string Technical = @"\ftech";
             public const string BiDirect = @"\fbidi";
         }
-
-
+         
         // 指定的 标志/选项 对GDI+方法的非托管调用 Metafile.EmfToWmfBits(). 图元文件。 
         private enum EmfToWmfBitsFlags
         {

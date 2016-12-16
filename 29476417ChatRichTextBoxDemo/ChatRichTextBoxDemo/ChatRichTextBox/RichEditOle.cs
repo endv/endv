@@ -4,15 +4,12 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 
-namespace CharBox
+namespace CSharpWin
 {
-    /// <summary>
-    /// 富编辑 OLE 对象连接与嵌入
-    /// </summary>
     internal class RichEditOle
     {
-        private ChatRichTextBox _richEdit = null;
-        private IRichEditOle _richEditOle = null;
+        private ChatRichTextBox _richEdit;
+        private IRichEditOle _richEditOle;
 
         public RichEditOle(ChatRichTextBox richEdit)
         {
@@ -40,49 +37,25 @@ namespace CharBox
                 IStorage storage;
                 IOleClientSite site;
                 Guid guid = Marshal.GenerateGuidForType(control.GetType());
-
                 NativeMethods.CreateILockBytesOnHGlobal(IntPtr.Zero, true, out bytes);
-                //STG创建文件锁定字节
                 NativeMethods.StgCreateDocfileOnILockBytes(bytes, 0x1012, 0, out storage);
-                //返回 IOleClientSite 接口用于创建新的对象。
                 IRichEditOle.GetClientSite(out site);
-
                 REOBJECT lpreobject = new REOBJECT();
-                lpreobject.cp = _richEdit.TextLength;  //     控件的文本中包含的字符数。
-                lpreobject.clsid = guid; //     返回指定类型的全局唯一标识符 (GUID)，或使用类型库导出程序 (Tlbexp.exe) 所用的算法生成 GUID。
-                lpreobject.pstg = storage;/// IStorage接口的实例。这是与对象关联的存储对象。
-                lpreobject.poleobj = Marshal.GetIUnknownForObject(control); // OLE对象接口 从托管对象返回 IUnknown 接口。
+                lpreobject.cp = _richEdit.TextLength;
+                lpreobject.clsid = guid;
+                lpreobject.pstg = storage;
+                lpreobject.poleobj = Marshal.GetIUnknownForObject(control);
                 lpreobject.polesite = site;
                 lpreobject.dvAspect = 1;
                 lpreobject.dwFlags = 2;
                 lpreobject.dwUser = 1;
                 IRichEditOle.InsertObject(lpreobject);
-                //Marshal.ReleaseComObject(bytes);
-                //Marshal.ReleaseComObject(site);
-                //Marshal.ReleaseComObject(storage);
-                //Marshal.ReleaseComObject(lpreobject);
+                Marshal.ReleaseComObject(bytes);
+                Marshal.ReleaseComObject(site);
+                Marshal.ReleaseComObject(storage);
             }
         }
 
-        //  GifBox gif = new GifBox();
-     
-        System.Collections.Generic.List<GifBox> gifList = new System.Collections.Generic.List<GifBox>();
-        public string GetGIFInfo()
-        {
-            string imageInfo = "";
-            REOBJECT reObject = new REOBJECT();
-            for (int i = 0; i < _richEditOle.GetObjectCount(); i++)
-            {
-                
-                this._richEditOle.GetObject(i, reObject, GETOBJECTOPTIONS.REO_GETOBJ_ALL_INTERFACES);
-                GifBox gif = gifList.Find(p => p != null && p.Index == reObject.dwUser);
-                if (gif != null)
-                {
-                    imageInfo += reObject.cp.ToString() + ":" + gif.Name + "|";
-                }
-            }
-            return imageInfo;
-        }
         public bool InsertImageFromFile(string strFilename)
         {
             ILockBytes bytes;
@@ -129,7 +102,9 @@ namespace CharBox
             return true;
         }
 
-        public REOBJECT InsertOleObject(IOleObject oleObject,int index)
+        public REOBJECT InsertOleObject(
+            IOleObject oleObject,
+            int index)
         {
             if (oleObject == null)
             {
@@ -222,13 +197,6 @@ namespace CharBox
                     pts);
                 return new Size(pts[0]);
             }
-        }
-
-        private class MyGIF
-        {
-        public     MyGIF() { }
-         public uint Index { get; internal set; }
-            public string Name { get; internal set; }
         }
     }
 }

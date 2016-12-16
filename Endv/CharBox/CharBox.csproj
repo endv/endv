@@ -41,40 +41,40 @@
     <Compile Include="ChatRichTextBox\ChatRichTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ChatRichTextBox\GifBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="ChatRichTextBox\Ole\CHARRANGE.cs" />
-    <Compile Include="ChatRichTextBox\Ole\CLIPFORMAT.cs" />
     <Compile Include="ChatRichTextBox\Ole\COMRECT.cs" />
-    <Compile Include="ChatRichTextBox\Ole\DVASPECT.cs" />
-    <Compile Include="ChatRichTextBox\Ole\FORMATETC.cs" />
     <Compile Include="ChatRichTextBox\Ole\GETCLIPBOARDDATAFLAGS.cs" />
     <Compile Include="ChatRichTextBox\Ole\GETOBJECTOPTIONS.cs" />
     <Compile Include="ChatRichTextBox\Ole\IAdviseSink.cs" />
-    <Compile Include="ChatRichTextBox\Ole\IDataObject.cs" />
     <Compile Include="ChatRichTextBox\Ole\IEnumFORMATETC.cs" />
     <Compile Include="ChatRichTextBox\Ole\IEnumOLEVERB.cs" />
     <Compile Include="ChatRichTextBox\Ole\IEnumSTATDATA.cs" />
+    <Compile Include="ChatRichTextBox\Ole\ISequentialStream.cs" />
+    <Compile Include="ChatRichTextBox\Ole\CLIPFORMAT.cs" />
+    <Compile Include="ChatRichTextBox\Ole\DVASPECT.cs" />
+    <Compile Include="ChatRichTextBox\GifBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ChatRichTextBox\Ole\FORMATETC.cs" />
+    <Compile Include="ChatRichTextBox\Ole\IDataObject.cs" />
     <Compile Include="ChatRichTextBox\Ole\IEnumSTATSTG.cs" />
-    <Compile Include="ChatRichTextBox\Ole\ILockBytes.cs" />
-    <Compile Include="ChatRichTextBox\Ole\IOleClientSite.cs" />
     <Compile Include="ChatRichTextBox\Ole\IOleContainer.cs" />
     <Compile Include="ChatRichTextBox\Ole\IOleObject.cs" />
     <Compile Include="ChatRichTextBox\Ole\IRichEditOle.cs" />
-    <Compile Include="ChatRichTextBox\Ole\ISequentialStream.cs" />
-    <Compile Include="ChatRichTextBox\Ole\IStorge.cs" />
     <Compile Include="ChatRichTextBox\Ole\IStream.cs" />
+    <Compile Include="ChatRichTextBox\Ole\ILockBytes.cs" />
+    <Compile Include="ChatRichTextBox\Ole\IOleClientSite.cs" />
+    <Compile Include="ChatRichTextBox\Ole\IStorge.cs" />
     <Compile Include="ChatRichTextBox\Ole\NativeMethods.cs" />
     <Compile Include="ChatRichTextBox\Ole\REOBJECT.cs" />
-    <Compile Include="ChatRichTextBox\Ole\REOOBJECTFLAGS.cs" />
     <Compile Include="ChatRichTextBox\Ole\RichEditOle.cs" />
+    <Compile Include="ChatRichTextBox\Ole\TYMED.cs" />
+    <Compile Include="ChatRichTextBox\Ole\REOOBJECTFLAGS.cs" />
     <Compile Include="ChatRichTextBox\Ole\STATDATA.cs" />
     <Compile Include="ChatRichTextBox\Ole\STGM.cs" />
     <Compile Include="ChatRichTextBox\Ole\STGMEDIUM.cs" />
     <Compile Include="ChatRichTextBox\Ole\tagLOGPALETTE.cs" />
     <Compile Include="ChatRichTextBox\Ole\tagOLEVERB.cs" />
-    <Compile Include="ChatRichTextBox\Ole\TYMED.cs" />
     <Compile Include="EmotionDropdown.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -154,7 +154,9 @@
       <DependentUpon>DrawToolsControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ChatRichTextBox\Ole\NewFolder1\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Face\1.gif" />
     <None Include="Resources\Face\2.gif" />

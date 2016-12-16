@@ -4,10 +4,14 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace CharBox
+namespace CSharpWin
 {
     /// <summary>
-    ///  一个专用于显示GIF动画图像的控件。
+    /// 作者：Starts_2000
+    /// 日期：2009-07-15
+    /// 网站：http://www.csharpwin.com CS 程序员之窗。
+    /// 你可以免费使用或修改以下代码，但请保留版权信息。
+    /// 功能：一个专用于显示GIF动画图像的控件。
     /// </summary>
     public class GifBox : Control
     {
@@ -18,9 +22,7 @@ namespace CharBox
         private EventHandler _eventAnimator;
         private bool _canAnimate;
         private Color _borderColor = Color.Transparent;
-        internal uint Index;
 
-        //private Color _borderColor = Color.BlueViolet;
         #endregion
 
         #region 构造函数
@@ -55,20 +57,10 @@ namespace CharBox
                     _canAnimate = ImageAnimator.CanAnimate(_image);
                 else
                     _canAnimate = false;
-                if (this.Image != null)
-                {
-                    this.Size = this.Image.Size;
-                    //this.Size = new Size(55, 55);//this.Image.Size; 
-                }
-                else
-                {
-                    //this.Size = this.Image.Size;
-                    this.Size = new Size(55, 55);//this.Image.Size;
-                }
-
-                //Invalidate(ImageRectangle);
-                //将多帧图像显示为动画。
-                if (!DesignMode) StartAnimate();
+                Size = Image.Size;
+                Invalidate(ImageRectangle);
+                if (!DesignMode)
+                    StartAnimate();
             }
         }
 
@@ -89,7 +81,6 @@ namespace CharBox
                 if (_imageRectangle == Rectangle.Empty &&
                     _image != null)
                 {
-                    ///对象当前正在其他地方使用。
                     _imageRectangle.X = (Width - _image.Width) / 2;
                     _imageRectangle.Y = (Height - _image.Height) / 2;
                     _imageRectangle.Width = _image.Width;
@@ -109,9 +100,8 @@ namespace CharBox
             get
             {
                 if (_eventAnimator == null)
-                    _eventAnimator = delegate (object sender, EventArgs e)
-                    {//使控件的指定区域无效（将其添加到控件的更新区域，下次绘制操作时将重新绘制更新区域），并向控件发送绘制消息。
-                        //其他信息: 无法使用已经从其基础 RCW 中分离的 COM 对象。该 COM 对象还在另一个线程中使用时就被释放了。
+                    _eventAnimator = delegate(object sender, EventArgs e)
+                    {
                         Invalidate(ImageRectangle);
                     };
                 return _eventAnimator;
@@ -130,7 +120,7 @@ namespace CharBox
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            base.OnPaint(e);
+            //base.OnPaint(e);
 
             if (_image != null)
             {
@@ -184,9 +174,6 @@ namespace CharBox
             }
         }
 
-        /// <summary>
-        ///  终止正在运行的动画。
-        /// </summary>
         private void StopAnimate()
         {
             if (CanAnimate)
@@ -195,9 +182,6 @@ namespace CharBox
             }
         }
 
-        /// <summary>
-        /// 使帧在指定的图像中前移。 新帧在下一次呈现图像时绘制。 此方法只适用于包含基于时间的帧的图像。
-        /// </summary>
         private void UpdateImage()
         {
             if (CanAnimate)

@@ -15,7 +15,7 @@ namespace CharBox
     {
         //   接口下面几个重要的方法
         //   InsertObject：插入一个对象到CRichEditCtrl
-        //   GetObject：返回一个CRichEditCtrl里面的REOBJECT对象
+        //   GetObject：返回一个CRichEditCtrl里面的 REOBJECT 对象
         //   ImportDataObject: 导入一个剪切板对象并替换当前选中内容
         //   GetClientSite：返回IOleClientSite接口用于创建新的对象。
         //   GetClipboardData：返回一个Clipboard对象。 
@@ -40,7 +40,7 @@ namespace CharBox
         int GetLinkCount();
 
         /// <summary>
-        /// 返回一个CRichEditCtrl里面的REOBJECT对象
+        /// 返回一个 CRichEditCtrl里面的 REOBJECT 对象
         /// </summary>
         /// <param name="iob"></param>
         /// <param name="lpreobject"></param>
@@ -58,6 +58,7 @@ namespace CharBox
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
         int InsertObject(REOBJECT lpreobject);
+   
         /// <summary>
         /// 转换对象
         /// </summary>

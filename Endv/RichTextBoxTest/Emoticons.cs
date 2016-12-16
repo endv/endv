@@ -246,8 +246,9 @@ namespace RichTextBoxTest
                 //////////////// 发送消息 ///////////////////////
 
 
-                readbox_ShowMessage.AppendTextAsRtf("wwww.endv.cn " + DateTime.Now.ToString() + "\r\n", new Font(this.Font, FontStyle.Underline | FontStyle.Bold), RtfColor.Blue, RtfColor.Yellow);
-                mm.MessageStr = Sendbox_SendMessage.Text.Trim();//聊天内容
+                readbox_ShowMessage.InsertTextAsRtf( "wwww.endv.cn "
+                    + DateTime.Now.ToString() + "\r\n", new Font(this.Font, FontStyle.Underline | FontStyle.Bold), RtfColor.Blue, RtfColor.White);
+                //mm.MessageStr = Sendbox_SendMessage.Text.Trim();//聊天内容
 
                 foreach (string tempStr in emotionList)//获取表情列表
                 {
@@ -260,15 +261,15 @@ namespace RichTextBoxTest
                     }
                 }
 
-                this.readbox_ShowMessage.AppendText(mm.MessageStr + "\r\n");
+                //this.readbox_ShowMessage.AppendText(mm.MessageStr );//+ "\r\n"
 
                 ////  添加消息 （这会产生较大的内存，需要改进（如压缩、使用其它的途径传输））
-                this.readbox_ShowMessage.AppendRtf(Sendbox_SendMessage.Rtf);
+                this.readbox_ShowMessage.AppendRtf(Sendbox_SendMessage.Rtf);//,null,0,0 InsertTextAsRtf AppendRtf 
 
-                this.readbox_ShowMessage.ScrollToCaret();//滚动到光标处
+                this.readbox_ShowMessage.ScrollToCaret();//滚动到光标处 
                 //ClearMemory();
                 // 清除 SendMessage 
-                Sendbox_SendMessage.Text = string.Empty; 
+                Sendbox_SendMessage.Rtf = string.Empty; 
             emotionList.Clear();
                 mm = null;  
                 #endregion  Sendbox_SendMessage 
