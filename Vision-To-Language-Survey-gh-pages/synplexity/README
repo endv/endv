@@ -1,2 +1,0 @@
-
-cat example.parsed | ./syn-plexity > output_summary

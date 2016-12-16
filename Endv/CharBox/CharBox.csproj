@@ -154,9 +154,7 @@
       <DependentUpon>DrawToolsControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ChatRichTextBox\Ole\NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\Face\1.gif" />
     <None Include="Resources\Face\2.gif" />
